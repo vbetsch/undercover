@@ -1,0 +1,20 @@
+{
+  "PLAYERS": {
+    "Player1": null,
+    "Player2": null,
+    "Player3": null,
+    "Player4": null,
+    "Player5": null
+  },
+  "ROLES": {
+    "civil": 3,
+    "white": 1,
+    "undercover": 1
+  },
+  "WORDS": [
+    ["car", "truck"],
+    ["violin", "guitar"],
+    ["facebook", "whatsapp"],
+    ["youtube", "tiktok"]
+  ]
+} 
