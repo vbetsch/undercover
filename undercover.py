@@ -14,23 +14,19 @@ WORDS = RULES["WORDS"]
 
 
 # Test rules
-sum_players = 0
-for player in PLAYERS:
-    sum_players += 1
-
-sum_roles = 0
-for role in ROLES:
-    sum_roles += ROLES[role]
+sum_players = len(PLAYERS.keys())
+sum_roles = sum(ROLES.values())
 
 if sum_players != sum_roles:
     raise Exception("[ERROR] Sum of players and sum of roles are different")
 
 
 # Affect roles to players
-remaining_roles = []
-for role in ROLES:
-    for index in range(1, ROLES[role] + 1):
-        remaining_roles.append(role)
+remaining_roles = [
+    role_name
+    for role_name, role_val in ROLES.items()
+    for _ in range(1, role_val + 1)
+]
 
 for player in PLAYERS:
     choose_role = choice(remaining_roles)
@@ -56,4 +52,3 @@ for player in PLAYERS:
 
 
 print(choice(WORDS))
- 
