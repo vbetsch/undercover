@@ -10,46 +10,42 @@ DATA = {
     "PLAYERS": {
         "WHITE_PLAYERS": [],
         "UNDERCOVER_PLAYERS": [],
-        "CIVIL_PLAYERS": [],
+        "CIVILIAN_PLAYERS": [],
         "ROLE_PLAYERS": {}
     },
     "ROLES": {
         "white": 0,
         "undercover": 0,
-        "civil": 0
+        "civilian": 0
     }
 }
 
+# --------------------------- DATA VARIABLES ---------------------------
 PLAYERS = DATA["PLAYERS"]["ROLE_PLAYERS"]
 WHITE_PLAYERS = DATA["PLAYERS"]["WHITE_PLAYERS"]
 UNDERCOVER_PLAYERS = DATA["PLAYERS"]["UNDERCOVER_PLAYERS"]
-CIVIL_PLAYERS = DATA["PLAYERS"]["CIVIL_PLAYERS"]
+CIVILIAN_PLAYERS = DATA["PLAYERS"]["CIVILIAN_PLAYERS"]
 ROLES = DATA["ROLES"]
 
 # --------------------------- PLAYERS ---------------------------
-sum_players = 5
-# sum_players = int(input("Players : "))
+sum_players = 5                                 # sum_players = int(input("Players : "))
 
 for index in range(1, sum_players + 1):
-    PLAYERS[f"Player{index}"] = None
+    PLAYERS[f"Player{index}"] = None            # PLAYERS[input(f"Name of player ({index}) : ")] = None
 
 # --------------------------- ROLES COUNT ---------------------------
-whites = 1
-undercovers = 1
-civils = 3
-# whites = int(input("White : "))
-# undercovers = int(input("Undercover : "))
-# civils = int(input("Civil : "))
+whites = 1                                      # whites = int(input("White : "))
+undercovers = 1                                 # undercovers = int(input("Undercover : "))
+civilians = 3                                   # civilians = int(input("Civilians : "))
 
-roles = [whites, undercovers, civils]
+roles = [whites, undercovers, civilians]
 
 if sum_players != sum(roles):
     raise Exception("[ERROR] Sum of players and sum of roles are different")
 
-
 ROLES["white"] = whites
 ROLES["undercover"] = undercovers
-ROLES["civil"] = civils
+ROLES["civilian"] = civilians
 
 # --------------------------- ROLES AFFECTATION ---------------------------
 remaining_roles = [
@@ -71,8 +67,8 @@ for player in PLAYERS:
             WHITE_PLAYERS.append(player)
         case "undercover":
             UNDERCOVER_PLAYERS.append(player)
-        case "civil":
-            CIVIL_PLAYERS.append(player)
+        case "civilian":
+            CIVILIAN_PLAYERS.append(player)
         case _:
             raise Exception("[ERROR] Someone has nothing role")
 
