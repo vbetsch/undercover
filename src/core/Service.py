@@ -8,6 +8,7 @@ class Service(metaclass=Singleton):
         self.rules = None
         self.files = {
             "words": 'words.json',
+            "default": 'default.json',
             "rules": 'rules.json'
         }
 
@@ -20,6 +21,9 @@ class Service(metaclass=Singleton):
     def __dump(path, data):
         with open(path, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
+
+    def read_default(self):
+        self.rules = self.__load(self.files["default"])
 
     def read_words(self):
         self.words = self.__load(self.files["words"])

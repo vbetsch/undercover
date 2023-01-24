@@ -1,0 +1,13 @@
+{
+    "PLAYERS": {
+        "WHITE_PLAYERS": [],
+        "UNDERCOVER_PLAYERS": [],
+        "CIVILIAN_PLAYERS": [],
+        "ROLE_PLAYERS": {}
+    },
+    "ROLES": {
+        "white": 0,
+        "undercover": 0,
+        "civilian": 0
+    }
+}
