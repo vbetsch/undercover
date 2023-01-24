@@ -3,8 +3,8 @@ from random import choice
 
 
 # --------------------------- JSON ---------------------------
-words_file = open('words.json', 'r')
-WORDS = load(words_file)
+with open('src/words.json', 'r') as words_file:
+    WORDS = load(words_file)
 
 DATA = {
     "PLAYERS": {
@@ -75,5 +75,5 @@ for player in PLAYERS:
 # --------------------------- GAME ---------------------------
 print(choice(WORDS))
 
-with open('rules.json', 'w', encoding='utf-8') as file:
-    dump(DATA, file, ensure_ascii=False, indent=4)
+with open('rules.json', 'w', encoding='utf-8') as rules_file:
+    dump(DATA, rules_file, ensure_ascii=False, indent=4)
