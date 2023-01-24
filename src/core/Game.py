@@ -1,4 +1,4 @@
-from src.Service import Service
+from src.core.Service import Service
 
 
 class Game:
