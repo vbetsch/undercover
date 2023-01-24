@@ -1,6 +1,7 @@
 from json import load, dump
 from random import choice
 
+
 # --------------------------- JSON ---------------------------
 words_file = open('words.json', 'r')
 WORDS = load(words_file)
@@ -51,10 +52,11 @@ ROLES["undercover"] = undercovers
 ROLES["civil"] = civils
 
 # --------------------------- ROLES AFFECTATION ---------------------------
-remaining_roles = []
-for role in ROLES:
-    for index in range(1, ROLES[role] + 1):
-        remaining_roles.append(role)
+remaining_roles = [
+    role_name
+    for role_name, role_val in ROLES.items()
+    for _ in range(1, role_val + 1)
+]
 
 for player in PLAYERS:
     choose_role = choice(remaining_roles)
