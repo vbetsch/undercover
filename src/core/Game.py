@@ -7,6 +7,16 @@ class Game:
         Service().read_default()
         Service().read_words()
 
+        # --------------------------- DATA VARIABLES ---------------------------
+        self.players = Service().rules["PLAYERS"]["ROLE_PLAYERS"]
+        self.white_players = Service().rules["PLAYERS"]["WHITE_PLAYERS"]
+        self.undercover_players = Service().rules["PLAYERS"]["UNDERCOVER_PLAYERS"]
+        self.civilian_players = Service().rules["PLAYERS"]["CIVILIAN_PLAYERS"]
+        self.roles = Service().rules["ROLES"]
+
+        # --------------------------- RULES VARIABLES ---------------------------
+        self.sum_players = 0
+
     def __enter__(self):
         # self.load()
         print("Open", self)
@@ -23,16 +33,4 @@ class Game:
         print(Service().rules)
         print(Service().words)
 
-        # --------------------------- DATA VARIABLES ---------------------------
-        players = Service().rules["PLAYERS"]["ROLE_PLAYERS"]
-        white_players = Service().rules["PLAYERS"]["WHITE_PLAYERS"]
-        undercover_players = Service().rules["PLAYERS"]["UNDERCOVER_PLAYERS"]
-        civilian_players = Service().rules["PLAYERS"]["CIVILIAN_PLAYERS"]
-        roles = Service().rules["ROLES"]
-
-        # --------------------------- PLAYERS ---------------------------
-        sum_players = 5  # sum_players = int(input("Players : "))
-
-        for index in range(1, sum_players + 1):
-            players[f"Player{index}"] = None  # PLAYERS[input(f"Name of player ({index}) : ")] = None
-        return self
+        print(self.sum_players)
