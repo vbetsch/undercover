@@ -1,6 +1,18 @@
 [
-    ["car", "truck"],
-    ["violin", "guitar"],
-    ["facebook", "whatsapp"],
-    ["youtube", "tiktok"]
+  [
+    "car",
+    "truck"
+  ],
+  [
+    "violin",
+    "guitar"
+  ],
+  [
+    "facebook",
+    "whatsapp"
+  ],
+  [
+    "youtube",
+    "tiktok"
+  ]
 ]

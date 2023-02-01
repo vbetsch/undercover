@@ -19,25 +19,53 @@ class Game:
         self.sum_players = 0
 
     def __enter__(self):
-        # self.load()
         Interactor().call_system(
             f"{Interactor().trad('actions', '_opening').capitalize()}{Interactor().progress} {self}")
+        self.load()
         return self
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
-        # self.save_state()
-        # self.close()
-        if exc_value:
-            Inspector().exception(exc_value)
         Interactor().call_system(
             f"{Interactor().trad('actions', '_exiting').capitalize()}{Interactor().progress} {self}")
+        if exc_value:
+            self.close()
+            Inspector().exception(exc_value)
+        self.save_state()
+        self.close()
         return self
 
+    def load(self):
+        Service().read_games()
+        game = Service().find_game(Service().config["last_game"])
+        if game:
+            Service().rules = game["rules"]
+            Service().words = game["words"]
+            print(f"{Interactor().trad('game_config', '_game_found')}{Interactor().progress}")
+        else:
+            print(f"{Interactor().trad('game_config', '_game_not_found')}")
+            self.config()
+
+    def save_state(self):
+        Service().compute_rules()
+        Service().compute_words()
+        Service().games.append({
+            "id": self.__hash__(),
+            "default": Service().get_default(),
+            "rules": Service().rules,
+            "words": Service().words
+        })
+        print(f"{Interactor().trad('game_config', '_game_saved')}")
+
+    def close(self):
+        print(f"{Interactor().trad('game_config', '_game_closed')}{Interactor().progress}")
+        Service().compute_games()
+        Service().update_last_game(self.__hash__())
+        Service().compute_config()
+
     def config(self):
-        print(Service().rules)
         # --------------------------- PLAYERS ---------------------------
         self.sum_players = Interactor().call_int_input(
-            f"{Interactor().trad('game_config', '_players').capitalize()} : ")
+            f"{Interactor().trad('game_config', '_number_of_players').capitalize()} : ")
 
         for index in range(1, self.sum_players + 1):
             self.players[Interactor().call_input(

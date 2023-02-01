@@ -10,8 +10,12 @@
     "_warning": "warning"
   },
   "game_config": {
+    "_game_found": "Loading of last game",
+    "_game_not_found": "Nothing game has been found",
+    "_game_saved": "The game has been saved",
+    "_game_closed": "Closing game",
     "_player": "player",
-    "_players": "players",
+    "_number_of_players": "number of players",
     "_name_of_player": "name of player"
   }
 }

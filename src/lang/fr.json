@@ -10,8 +10,12 @@
     "_warning": "attention"
   },
   "game_config": {
+    "_game_found": "Chargement de la dernière partie",
+    "_game_not_found": "Aucune partie n'a été trouvée",
+    "_game_saved": "La partie a été sauvegardée",
+    "_game_closed": "La partie se ferme",
     "_player": "joueur",
-    "_players": "joueurs",
+    "_number_of_players": "nombre de joueurs",
     "_name_of_player": "nom du joueur"
   }
 }
