@@ -1,9 +1,10 @@
 from src.core.Game import Game
+from src.core.Interactor import Interactor
 from src.core.Service import Service
 
 
 def init():
-    Service().read_config()
+    pass
 
 
 def main():

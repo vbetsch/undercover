@@ -6,8 +6,6 @@ from src.core.Service import Service
 class Game:
     def __init__(self):                        # def __init__(self, config):
         Interactor().call_system(f"Creating... {self}")
-        Service().read_default()
-        Service().read_words()
 
         # --------------------------- DATA VARIABLES ---------------------------
         self.players = Service().rules["PLAYERS"]["ROLE_PLAYERS"]
