@@ -9,20 +9,20 @@ class Interactor(metaclass=Singleton):
         self.dialog_code = "-"
 
     @staticmethod
-    def callInput(text):
+    def call_input(text):
         return input(text)
 
-    def callIntInput(self, text):
-        return int(self.callInput(text))
+    def call_int_input(self, text):
+        return int(self.call_input(text))
 
-    def callError(self, content):
+    def call_error(self, content):
         print(self.error_code, content, self.error_code)
 
-    def callWarning(self, content):
+    def call_warning(self, content):
         print(self.warning_code, content, self.warning_code)
 
-    def callSystem(self, content):
+    def call_system(self, content):
         print(self.system_code, content)
 
-    def callDialog(self, content):
+    def call_dialog(self, content):
         print(self.dialog_code, content)

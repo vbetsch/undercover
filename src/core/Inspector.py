@@ -12,8 +12,8 @@ class Inspector(metaclass=Singleton):
 
     @staticmethod
     def error(text):
-        Interactor().callError(f"[ERROR] {text}")
+        Interactor().call_error(f"[ERROR] {text}")
 
     @staticmethod
     def warning(text):
-        Interactor().callWarning(f"[WARNING] {text}")
+        Interactor().call_warning(f"[WARNING] {text}")

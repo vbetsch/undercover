@@ -5,7 +5,7 @@ from src.core.Service import Service
 
 class Game:
     def __init__(self):                        # def __init__(self, config):
-        Interactor().callSystem(f"Creating... {self}")
+        Interactor().call_system(f"Creating... {self}")
         Service().read_default()
         Service().read_words()
 
@@ -21,7 +21,7 @@ class Game:
 
     def __enter__(self):
         # self.load()
-        Interactor().callSystem(f"Opening... {self}")
+        Interactor().call_system(f"Opening... {self}")
         return self
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
@@ -29,20 +29,20 @@ class Game:
         # self.close()
         if exc_value:
             Inspector().exception(exc_value)
-        Interactor().callSystem(f"Exiting... {self}")
+        Interactor().call_system(f"Exiting... {self}")
         return self
 
     def config(self):
         print(Service().rules)
         # --------------------------- PLAYERS ---------------------------
-        self.sum_players = Interactor().callIntInput("Players : ")
+        self.sum_players = Interactor().call_int_input("Players : ")
 
         for index in range(1, self.sum_players + 1):
-            self.players[Interactor().callInput(f"Name of player ({index}) : ")] = None
+            self.players[Interactor().call_input(f"Name of player ({index}) : ")] = None
 
         Service().compute_rules()
 
     def run(self):
-        Interactor().callSystem(f"Running... {self}")
+        Interactor().call_system(f"Running... {self}")
         print(Service().rules)
         print(Service().words)
