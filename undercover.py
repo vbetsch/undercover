@@ -3,7 +3,7 @@ from random import choice
 
 
 # --------------------------- JSON ---------------------------
-with open('src/words.json', 'r') as words_file:
+with open('src/data/words.json', 'r') as words_file:
     WORDS = load(words_file)
 
 DATA = {

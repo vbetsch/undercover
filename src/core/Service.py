@@ -7,9 +7,9 @@ class Service(metaclass=Singleton):
         self.words = None
         self.rules = None
         self.files = {
-            "words": 'words.json',
-            "default": 'default.json',
-            "rules": 'rules.json'
+            "words": 'data/words.json',
+            "default": 'data/default.json',
+            "rules": 'data/rules.json'
         }
 
     @staticmethod
