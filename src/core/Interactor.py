@@ -8,33 +8,27 @@ class Interactor(metaclass=Singleton):
         self.warning_code = "-----"
         self.system_code = "$"
         self.dialog_code = "-"
-    
-    
+        self.progress = "..."
+
     @staticmethod
-    def _(key):
-        return Service().dict[key]
-    
-    
+    def trad(group, key):
+        return Service().dict[group][key]
+
     @staticmethod
     def call_input(text):
         return input(text)
-    
-    
+
     def call_int_input(self, text):
         return int(self.call_input(text))
-    
-    
+
     def call_error(self, content):
         print(self.error_code, content, self.error_code)
-    
-    
+
     def call_warning(self, content):
         print(self.warning_code, content, self.warning_code)
-    
-    
+
     def call_system(self, content):
         print(self.system_code, content)
-    
-    
+
     def call_dialog(self, content):
         print(self.dialog_code, content)

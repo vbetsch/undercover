@@ -1,4 +1,17 @@
 {
-  "_example" : "example",
-  "_player" : "Player"
+  "actions": {
+    "_creating": "creating",
+    "_opening": "opening",
+    "_exiting": "exiting",
+    "_running": "running"
+  },
+  "messages": {
+    "_error":  "error",
+    "_warning": "warning"
+  },
+  "game_config": {
+    "_player": "player",
+    "_players": "players",
+    "_name_of_player": "name of player"
+  }
 }
