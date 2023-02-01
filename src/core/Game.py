@@ -1,9 +1,11 @@
+from src.core.Inspector import Inspector
+from src.core.Interactor import Interactor
 from src.core.Service import Service
 
 
 class Game:
     def __init__(self):                        # def __init__(self, config):
-        print("Creating", self)
+        Interactor().callSystem(f"Creating... {self}")
         Service().read_default()
         Service().read_words()
 
@@ -19,18 +21,28 @@ class Game:
 
     def __enter__(self):
         # self.load()
-        print("Open", self)
+        Interactor().callSystem(f"Opening... {self}")
         return self
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
         # self.save_state()
         # self.close()
-        print("Exit", self)
+        if exc_value:
+            Inspector().exception(exc_value)
+        Interactor().callSystem(f"Exiting... {self}")
         return self
 
+    def config(self):
+        print(Service().rules)
+        # --------------------------- PLAYERS ---------------------------
+        self.sum_players = Interactor().callIntInput("Players : ")
+
+        for index in range(1, self.sum_players + 1):
+            self.players[Interactor().callInput(f"Name of player ({index}) : ")] = None
+
+        Service().compute_rules()
+
     def run(self):
-        print("Running", self)
+        Interactor().callSystem(f"Running... {self}")
         print(Service().rules)
         print(Service().words)
-
-        print(self.sum_players)

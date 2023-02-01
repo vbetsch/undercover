@@ -34,5 +34,5 @@ class Service(metaclass=Singleton):
     def read_rules(self):
         self.rules = self.__load(self.files["rules"])
 
-    def compute_rules(self, data):
-        self.__dump(self.files["rules"], data)
+    def compute_rules(self):
+        self.__dump(self.files["rules"], self.rules)
