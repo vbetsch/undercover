@@ -4,9 +4,11 @@ import json
 
 class Service(metaclass=Singleton):
     def __init__(self):
+        self.config = None
         self.words = None
         self.rules = None
         self.files = {
+            "config": 'config.json',
             "words": 'data/words.json',
             "default": 'data/default.json',
             "rules": 'data/rules.json'
@@ -21,7 +23,10 @@ class Service(metaclass=Singleton):
     def __dump(path, data):
         with open(path, 'w', encoding='utf-8') as file:
             json.dump(data, file, ensure_ascii=False, indent=4)
-
+    
+    def read_config(self):
+        self.config = self.__load(self.files["config"])
+    
     def read_default(self):
         self.rules = self.__load(self.files["default"])
 
