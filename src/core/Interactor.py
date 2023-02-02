@@ -6,17 +6,16 @@ class Interactor(metaclass=Singleton):
     def __init__(self):
         self.error_code = "#####"
         self.warning_code = "-----"
-        self.dialog_code = "$"
-        self.system_code = ">"
+        self.system_code = "|"
+        self.dialog_code = "->"
         self.progress = "..."
 
     @staticmethod
     def trad(group, key):
         return Service().dict[group][key]
 
-    @staticmethod
-    def call_input(text):
-        return input(text)
+    def call_input(self, text):
+        return input(f"{self.dialog_code} {text}")
 
     def call_int_input(self, text):
         return int(self.call_input(text))
@@ -29,6 +28,3 @@ class Interactor(metaclass=Singleton):
 
     def call_system(self, content):
         print(self.system_code, content)
-
-    def call_dialog(self, content):
-        print(self.dialog_code, content)

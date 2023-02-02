@@ -1,8 +1,5 @@
 {
   "actions": {
-    "_creating": "création",
-    "_opening": "chargement",
-    "_exiting": "fermeture",
     "_running": "lancement"
   },
   "messages": {
@@ -16,6 +13,7 @@
     "_game_closed": "La partie se ferme",
     "_player": "joueur",
     "_number_of_players": "nombre de joueurs",
-    "_name_of_player": "nom du joueur"
+    "_name_of_player": "nom du joueur",
+    "_new_game": "Nouvelle partie"
   }
 }

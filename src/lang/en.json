@@ -1,8 +1,5 @@
 {
   "actions": {
-    "_creating": "creating",
-    "_opening": "opening",
-    "_exiting": "exiting",
     "_running": "running"
   },
   "messages": {
@@ -16,6 +13,7 @@
     "_game_closed": "Closing game",
     "_player": "player",
     "_number_of_players": "number of players",
-    "_name_of_player": "name of player"
+    "_name_of_player": "name of player",
+    "_new_game": "New game"
   }
 }

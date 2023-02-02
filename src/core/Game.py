@@ -56,6 +56,7 @@ class Game:
         Service().compute_config()
 
     def config(self):
+        Interactor().call_system(f"{Interactor().trad('game_config', '_new_game')}")
         # --------------------------- PLAYERS ---------------------------
         self.sum_players = Interactor().call_int_input(
             f"{Interactor().trad('game_config', '_number_of_players').capitalize()} : ")
