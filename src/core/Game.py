@@ -5,9 +5,6 @@ from src.core.Service import Service
 
 class Game:
     def __init__(self):
-        Interactor().call_system(
-            f"{Interactor().trad('actions', '_creating').capitalize()}{Interactor().progress} {self}")
-
         # --------------------------- DATA VARIABLES ---------------------------
         self.players = Service().rules["PLAYERS"]["ROLE_PLAYERS"]
         self.white_players = Service().rules["PLAYERS"]["WHITE_PLAYERS"]
@@ -19,14 +16,10 @@ class Game:
         self.sum_players = 0
 
     def __enter__(self):
-        Interactor().call_system(
-            f"{Interactor().trad('actions', '_opening').capitalize()}{Interactor().progress} {self}")
         self.load()
         return self
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
-        Interactor().call_system(
-            f"{Interactor().trad('actions', '_exiting').capitalize()}{Interactor().progress} {self}")
         if exc_value:
             self.close()
             Inspector().exception(exc_value)
@@ -40,9 +33,9 @@ class Game:
         if game:
             Service().rules = game["rules"]
             Service().words = game["words"]
-            print(f"{Interactor().trad('game_config', '_game_found')}{Interactor().progress}")
+            Interactor().call_system(f"{Interactor().trad('game_config', '_game_found')}{Interactor().progress}")
         else:
-            print(f"{Interactor().trad('game_config', '_game_not_found')}")
+            Interactor().call_warning(f"{Interactor().trad('game_config', '_game_not_found')}")
             self.config()
 
     def save_state(self):
@@ -54,10 +47,10 @@ class Game:
             "rules": Service().rules,
             "words": Service().words
         })
-        print(f"{Interactor().trad('game_config', '_game_saved')}")
+        Interactor().call_system(f"{Interactor().trad('game_config', '_game_saved')}")
 
     def close(self):
-        print(f"{Interactor().trad('game_config', '_game_closed')}{Interactor().progress}")
+        Interactor().call_system(f"{Interactor().trad('game_config', '_game_closed')}{Interactor().progress}")
         Service().compute_games()
         Service().update_last_game(self.__hash__())
         Service().compute_config()
@@ -75,6 +68,6 @@ class Game:
 
     def run(self):
         Interactor().call_system(
-            f"{Interactor().trad('actions', '_running').capitalize()}{Interactor().progress} {self}")
+            f"{Interactor().trad('actions', '_running').capitalize()}{Interactor().progress}")
         print(Service().rules)
         print(Service().words)
