@@ -1,3 +1,4 @@
 .idea
 venv
-*.json
+rules.json
+games.json
