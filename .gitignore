@@ -1,4 +1,5 @@
 .idea
 venv
-rules.json
+config.json
 games.json
+rules.json
