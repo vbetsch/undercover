@@ -24,7 +24,7 @@ class Service(metaclass=Singleton):
 
     @staticmethod
     def __load(path):
-        with open(path, 'r') as file:
+        with open(path, 'r', encoding='utf-8') as file:
             return json.load(file)
 
     @staticmethod
