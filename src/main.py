@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 from src.core.Game import Game
 
 
