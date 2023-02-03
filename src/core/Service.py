@@ -57,6 +57,8 @@ class Service(metaclass=Singleton):
 
     def clear_games(self):
         self.games = []
+        self.words = []
+        self.rules = []
         self.compute_games()
 
     def get_default(self):
