@@ -13,6 +13,8 @@ class Menu:
     def compute_options(self):
         match self.mode:
             case "first_letters":
+                if Inspector().sameFirstLetter(self.entries):
+                    Inspector().exception("Some options start with same letter")
                 for entry in self.entries:
                     self.options[entry[0].lower()] = entry.capitalize()
             case "numbers":
@@ -31,5 +33,6 @@ class Menu:
         self.entries.extend(list(entries))
         self.compute_options()
 
-    # TODO: def update_option(self, index, option)
-    # TODO: def insert_option(self, position, option)
+    # TODO: def update_option(self, index, entry)
+    # TODO: def insert_options(self, *entries) entries -> (position, option),...
+    # TODO: def delete_options(self, *entries) entries -> 1,...

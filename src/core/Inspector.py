@@ -17,3 +17,13 @@ class Inspector(metaclass=Singleton):
     @staticmethod
     def warning(text):
         Interactor().call_warning(text)
+
+    @staticmethod
+    def sameFirstLetter(words):
+        first_letters = []
+        for word in words:
+            first_letters.append(word[0])
+        if len(first_letters) != len(set(first_letters)):
+            return True
+        else:
+            return False
