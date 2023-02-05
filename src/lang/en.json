@@ -1,10 +1,16 @@
 {
+  "errors": {
+    "_error_found": "Unknown error found"
+  },
   "actions": {
     "_running": "running"
   },
   "messages": {
     "_error":  "error",
     "_warning": "warning"
+  },
+  "menu": {
+    "_menu_mode_not_found": "Menu mode not found"
   },
   "game_config": {
     "_game_found": "Loading of last game",

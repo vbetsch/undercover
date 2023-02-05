@@ -21,10 +21,10 @@ class Interactor(metaclass=Singleton):
         return int(self.call_input(text))
 
     def call_error(self, content):
-        print(f"{self.error_code} [{Interactor().trad('messages', '_error').upper()}] {content} {self.error_code}")
+        print(f"{self.error_code} [{self.trad('messages', '_error').upper()}] {content} {self.error_code}")
 
     def call_warning(self, content):
-        print(f"{self.warning_code} [{Interactor().trad('messages', '_warning').upper()}] {content} {self.warning_code}")
+        print(f"{self.warning_code} [{self.trad('messages', '_warning').upper()}] {content} {self.warning_code}")
 
     def call_system(self, content):
         print(self.system_code, content)

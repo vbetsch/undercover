@@ -8,7 +8,7 @@ class Inspector(metaclass=Singleton):
 
     @staticmethod
     def exception(text):
-        raise Exception(text)
+        raise Exception(f"{Interactor().error_code} [{Interactor().trad('messages', '_error').upper()}] {text} {Interactor().error_code}")
 
     @staticmethod
     def error(text):

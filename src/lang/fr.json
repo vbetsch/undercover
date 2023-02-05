@@ -1,10 +1,16 @@
 {
+  "errors": {
+    "_error_found": "Une erreur s'est produite"
+  },
   "actions": {
     "_running": "lancement"
   },
   "messages": {
     "_error":  "erreur",
     "_warning": "attention"
+  },
+  "menu": {
+    "_menu_mode_not_found": "Le mode du menu demandé n'existe pas"
   },
   "game_config": {
     "_game_found": "Chargement de la dernière partie",
