@@ -7,29 +7,32 @@ def main():
     
     menu.add_options("help")
     menu.show()
-    
+
     menu.add_options("jouer", "quitter")
     menu.show()
-    
+
     menu.insert_options((3, "relier à un client"))
     menu.show()
-    
+
     menu.insert_options((5, "XXXXXX"), (6, "YYYYYY"))
     menu.show()
-    
+
     menu.update_option("jouer", "execute")
     menu.show()
-    
+
     menu.update_option_by_index(8, "play")
     menu.show()
-    
-    menu.update_option_by_key('q', "exit")
+
+    menu.update_options_by_key(q="exit")
+    menu.show()
+
+    menu.update_options_by_key(X="voila", Y="bref")
+    menu.show()
+
+    menu.delete_option("voila")
     menu.show()
     
-    menu.delete_option("xxxxxx")
-    menu.show()
-    
-    menu.delete_option_by_key("Y")
+    menu.delete_options_by_key('b')
     menu.show()
     
     menu.delete_option_by_index(5)

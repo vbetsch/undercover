@@ -32,12 +32,10 @@ class Menu:
         print(result)
 
     def add_options(self, *entries):
-        self.one_option_already_exist(entries)
         self.entries.extend(list(entries))
         self.compute_options()
 
     def insert_options(self, *options):
-        self.one_option_already_exist(options)
         for opt in options:
             self.entries.insert(opt[0] - 1, opt[1])
         self.compute_options()
@@ -54,15 +52,18 @@ class Menu:
         self.entries[index - 1] = entry
         self.compute_options()
 
-    # TODO: multiple options
-    def update_option_by_key(self, key, entry):
-        self.update_option(self.options[key], entry)
+    def update_options_by_key(self, **kwargs):
+        for key, value in kwargs.items():
+            if not self.exist_key(key):
+                Utils().exception(f"Key {key} not found")
+            self.update_option(self.options[key], value)
 
     def delete_option(self, opt):
+        if not self.exist_option(opt):
+            Utils().exception("Option not found")
         alternatives = [opt.upper(), opt.lower(), opt.capitalize()]
         for alt in alternatives:
             if self.exist_option(alt):
-                print("Success")
                 self.entries.pop(Utils().get_index_from_list(self.entries, alt))
                 self.compute_options()
 
@@ -72,14 +73,22 @@ class Menu:
         self.entries.pop(Utils().get_index_from_list(self.entries, self.entries[index - 1]))
         self.compute_options()
 
-    # TODO: multiple options
-    def delete_option_by_key(self, key):
-        alternatives = [key.upper(), key.lower()]
-        for alt in alternatives:
-            if Inspector().element_in_list(alt, self.options.keys()):
-                print("Success")
-                self.entries.pop(Utils().get_index_from_list(self.entries, self.options[alt]))
-                self.compute_options()
+    def delete_options_by_key(self, *args):
+        for arg in args:
+            if not self.exist_key(arg):
+                Utils().exception(f"Key {arg} not found")
+            print("yes")
+            alternatives = [arg.upper(), arg.lower()]
+            for alt in alternatives:
+                if Inspector().element_in_list(alt, self.options.keys()):
+                    self.entries.pop(Utils().get_index_from_list(self.entries, self.options[alt]))
+                    self.compute_options()
+
+    def exist_key(self, key):
+        if Inspector().element_in_list(key, self.options.keys()):
+            return True
+        else:
+            return False
 
     def exist_option(self, opt):
         if Inspector().element_in_list(opt, self.entries):
@@ -110,5 +119,5 @@ class Menu:
         return True
 
     def one_option_already_exist(self, options):
-        if not self.exist_one_option(list(options)):
+        if self.exist_one_option(list(options)):
             Utils().exception("One option already exist")
