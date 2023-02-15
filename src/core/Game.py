@@ -66,8 +66,9 @@ class Game:
                 f"{Interactor().trad('game_config', '_name_of_player').capitalize()} ({index}) : ")] = None
 
         Service().compute_rules()
-
-    def run(self):
+    
+    @staticmethod
+    def run():
         Interactor().call_system(
             f"{Interactor().trad('actions', '_running').capitalize()}{Interactor().progress}")
         print(Service().rules)

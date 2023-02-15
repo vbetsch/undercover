@@ -15,7 +15,7 @@ class Menu:
         self.options = {}
         match self.mode:
             case "first_letters":
-                if Inspector().sameFirstLetter(self.entries):
+                if Inspector().same_first_letter(self.entries):
                     Inspector().exception("Some options start with same letter")
                 for entry in self.entries:
                     self.options[entry[0]] = entry
@@ -76,13 +76,13 @@ class Menu:
     def delete_option_by_key(self, key):
         alternatives = [key.upper(), key.lower()]
         for alt in alternatives:
-            if Inspector().elementInList(alt, self.options.keys()):
+            if Inspector().element_in_list(alt, self.options.keys()):
                 print("Success")
                 self.entries.pop(Utils().get_index_from_list(self.entries, self.options[alt]))
                 self.compute_options()
 
     def exist_option(self, opt):
-        if Inspector().elementInList(opt, self.entries):
+        if Inspector().element_in_list(opt, self.entries):
             return True
         else:
             return False

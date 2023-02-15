@@ -19,14 +19,14 @@ class Inspector(metaclass=Singleton):
         Interactor().call_warning(text)
 
     @staticmethod
-    def elementInList(element, array):
+    def element_in_list(element, array):
         if element in array:
             return True
         else:
             return False
 
     @staticmethod
-    def sameFirstLetter(words):
+    def same_first_letter(words):
         first_letters = []
         for word in words:
             first_letters.append(word.lower()[0])
@@ -36,7 +36,7 @@ class Inspector(metaclass=Singleton):
             return False
 
     @staticmethod
-    def sameFirstLetterWithoutCase(words):
+    def same_first_letter_without_case(words):
         first_letters = []
         for word in words:
             first_letters.append(word[0])
