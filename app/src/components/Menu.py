@@ -35,9 +35,11 @@ class Menu:
         self.entries.extend(list(entries))
         self.compute_options()
 
-    def insert_options(self, *options):
-        for opt in options:
-            self.entries.insert(opt[0] - 1, opt[1])
+    def insert_options(self, **options):
+        for key, value in options.items():
+            if not self.exist_key(key):
+                Utils().exception(f"Key {key} not found")
+            self.entries.insert(self.entries.index(self.options[key]), value)
         self.compute_options()
 
     def update_option(self, opt, entry):
@@ -69,7 +71,7 @@ class Menu:
 
     def delete_option_by_index(self, index):
         if not self.exist_option_by_index(index):
-            print("Index not found")
+            Utils().exception("Index not found")
         self.entries.pop(Utils().get_index_from_list(self.entries, self.entries[index - 1]))
         self.compute_options()
 
@@ -77,7 +79,6 @@ class Menu:
         for arg in args:
             if not self.exist_key(arg):
                 Utils().exception(f"Key {arg} not found")
-            print("yes")
             alternatives = [arg.upper(), arg.lower()]
             for alt in alternatives:
                 if Inspector().element_in_list(alt, self.options.keys()):
