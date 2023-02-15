@@ -7,7 +7,7 @@ class Utils(metaclass=Singleton):
 
     @staticmethod
     def exception(text):
-        raise Exception(f"ERROR: {text}")
+        raise Exception(f"'{text}'")
 
     @staticmethod
     def get_index_from_list(array, value):
