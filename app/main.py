@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from src.core.Game import Game
+from app.src.core.Game import Game
 
 
 def main():

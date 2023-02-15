@@ -1,6 +1,6 @@
-from src.core.Meta import Singleton
-from src.core.Service import Service
-from src.core.Utils import Utils
+from app.src.core.Meta import Singleton
+from app.src.core.Service import Service
+from app.src.core.Utils import Utils
 
 
 class Interactor(metaclass=Singleton):

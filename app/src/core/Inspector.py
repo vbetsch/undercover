@@ -1,4 +1,4 @@
-from src.core.Meta import Singleton
+from app.src.core.Meta import Singleton
 
 
 class Inspector(metaclass=Singleton):

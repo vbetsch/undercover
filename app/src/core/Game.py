@@ -1,6 +1,6 @@
-from src.core.Interactor import Interactor
-from src.core.Service import Service
-from src.core.Utils import Utils
+from app.src.core.Interactor import Interactor
+from app.src.core.Service import Service
+from app.src.core.Utils import Utils
 
 
 class Game:

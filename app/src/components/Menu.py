@@ -1,6 +1,6 @@
-from src.core.Inspector import Inspector
-from src.core.Interactor import Interactor
-from src.core.Utils import Utils
+from app.src.core.Inspector import Inspector
+from app.src.core.Interactor import Interactor
+from app.src.core.Utils import Utils
 
 
 class Menu:

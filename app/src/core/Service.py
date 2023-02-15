@@ -1,6 +1,6 @@
 import json
 
-from src.core.Meta import Singleton
+from app.src.core.Meta import Singleton
 
 
 class Service(metaclass=Singleton):

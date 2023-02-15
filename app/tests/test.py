@@ -1,8 +1,8 @@
-from src.components.Menu import Menu
+from app.src.components.Menu import Menu
 
 
 def main():
-    menu = Menu("first_letters", "test", "ajouter un client", "modifier un client", "supprimer un client")
+    menu = Menu("first_letters", "tests", "ajouter un client", "modifier un client", "supprimer un client")
     menu.show()
     
     menu.add_options("help")
