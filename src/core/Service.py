@@ -34,6 +34,9 @@ class Service(metaclass=Singleton):
 
     def compute_config(self):
         self.__dump(self.files["config"], self.config)
+        
+    def get_lang(self):
+        return self.config["lang"]
 
     def update_lang(self, lang):
         self.dict = self.__load(self.files["langs"][lang])

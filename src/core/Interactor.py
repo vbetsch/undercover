@@ -1,3 +1,4 @@
+from src.core.Inspector import Inspector
 from src.core.Meta import Singleton
 from src.core.Service import Service
 
@@ -12,7 +13,10 @@ class Interactor(metaclass=Singleton):
 
     @staticmethod
     def trad(group, key):
-        return Service().dict[group][key]
+        to_return = Service().dict[group][key]
+        if not to_return:
+            return Inspector().exception(f"Traduction is missing on {Service().get_lang()} for key {key} in group {group}")
+        return to_return
 
     def call_input(self, text):
         return input(f"{self.dialog_code} {text}")
