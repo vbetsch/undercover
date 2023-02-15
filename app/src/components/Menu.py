@@ -8,7 +8,9 @@ class Menu:
         self.mode = mode
         self.title = title
         self.options = {}
-        self.entries = list(entries)
+        self.entries = []
+        for entry in entries:
+            self.entries.append(entry.lower())
         self.compute_options()
 
     def compute_options(self):
@@ -18,56 +20,59 @@ class Menu:
                 if Inspector().same_first_letter(self.entries):
                     Utils().exception("Some options start with same letter")
                 for entry in self.entries:
-                    self.options[entry[0]] = entry
+                    self.options[entry[0].lower()] = entry.lower()
             case "numbers":
                 for index in range(0, len(self.entries)):
-                    self.options[index + 1] = self.entries[index]
+                    self.options[index + 1] = self.entries[index].lower()
             case _:
                 Utils().exception(Interactor().trad("menu", "_menu_mode_not_found"))
 
     def show(self):
         result = f"--------------- {self.title.upper()} ---------------"
         for opt in self.options:
-            result += f"\n({opt.lower()}) {self.options[opt].capitalize()}"
+            result += f"\n({opt}) {self.options[opt].capitalize()}"
         print(result)
 
     def add_options(self, *entries):
-        self.entries.extend(list(entries))
+        for entry in entries:
+            self.entries.append(entry.lower())
         self.compute_options()
 
     def insert_options(self, **options):
         for key, value in options.items():
+            key = key.lower()
             if not self.exist_key(key):
                 Utils().exception(f"Key {key} not found")
-            self.entries.insert(self.entries.index(self.options[key]), value)
+            self.entries.insert(self.entries.index(self.options[key]), value.lower())
         self.compute_options()
 
     def update_option(self, opt, entry):
+        opt = opt.lower()
         if not self.exist_option(opt):
             Utils().exception("Option not found")
-        self.entries[Utils().get_index_from_list(self.entries, opt)] = entry
+        self.entries[Utils().get_index_from_list(self.entries, opt)] = entry.lower()
         self.compute_options()
 
     def update_option_by_index(self, index, entry):
         if not self.exist_option_by_index(index):
             Utils().exception("Index not found")
-        self.entries[index - 1] = entry
+        self.entries[index - 1] = entry.lower()
         self.compute_options()
 
     def update_options_by_key(self, **kwargs):
         for key, value in kwargs.items():
+            key = key.lower()
             if not self.exist_key(key):
                 Utils().exception(f"Key {key} not found")
-            self.update_option(self.options[key], value)
+            self.update_option(self.options[key], value.lower())
 
     def delete_option(self, opt):
+        opt = opt.lower()
         if not self.exist_option(opt):
             Utils().exception("Option not found")
-        alternatives = [opt.upper(), opt.lower(), opt.capitalize()]
-        for alt in alternatives:
-            if self.exist_option(alt):
-                self.entries.pop(Utils().get_index_from_list(self.entries, alt))
-                self.compute_options()
+        if self.exist_option(opt):
+            self.entries.pop(Utils().get_index_from_list(self.entries, opt))
+            self.compute_options()
 
     def delete_option_by_index(self, index):
         if not self.exist_option_by_index(index):
@@ -77,22 +82,21 @@ class Menu:
 
     def delete_options_by_key(self, *args):
         for arg in args:
+            arg = arg.lower()
             if not self.exist_key(arg):
                 Utils().exception(f"Key {arg} not found")
-            alternatives = [arg.upper(), arg.lower()]
-            for alt in alternatives:
-                if Inspector().element_in_list(alt, self.options.keys()):
-                    self.entries.pop(Utils().get_index_from_list(self.entries, self.options[alt]))
-                    self.compute_options()
+            if Inspector().element_in_list(arg, self.options.keys()):
+                self.entries.pop(Utils().get_index_from_list(self.entries, self.options[arg]))
+                self.compute_options()
 
     def exist_key(self, key):
-        if Inspector().element_in_list(key, self.options.keys()):
+        if Inspector().element_in_list(key.lower(), self.options.keys()):
             return True
         else:
             return False
 
     def exist_option(self, opt):
-        if Inspector().element_in_list(opt, self.entries):
+        if Inspector().element_in_list(opt.lower(), self.entries):
             return True
         else:
             return False
@@ -105,16 +109,14 @@ class Menu:
 
     def exist_one_option(self, options):
         for opt in options:
-            alternatives = [opt.upper(), opt.lower(), opt.capitalize()]
-            for alt in alternatives:
-                if self.exist_option(alt):
-                    return True
+            opt = opt.lower()
+            if self.exist_option(opt):
+                return True
         return False
 
     def exist_all_options(self, options):
         for opt in options:
-            alternatives = [opt.upper(), opt.lower(), opt.capitalize()]
-            for alt in alternatives:
-                if not self.exist_option(alt):
-                    return False
+            opt = opt.lower()
+            if not self.exist_option(opt):
+                return False
         return True

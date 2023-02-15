@@ -6,34 +6,34 @@ class TestMenu:
         self.menu = None
 
     def test1(self):
-        self.menu = Menu("first_letters", "tests", "ajouter un client", "modifier un client", "supprimer un client")
+        self.menu = Menu("first_letters", "tesTs", "Ajouter un client", "ModiFier un clieNt", "supprimer un client")
 
     def test2(self):
-        self.menu.add_options("help")
+        self.menu.add_options("Help")
 
     def test3(self):
-        self.menu.add_options("jouer", "quitter")
+        self.menu.add_options("JoUeR", "quItTer")
 
     def test4(self):
-        self.menu.insert_options(s="relier à un client")
+        self.menu.insert_options(s="rElier à Un cliEnR")
 
     def test5(self):
-        self.menu.insert_options(h="XXXXXX", q="YYYYYY")
+        self.menu.insert_options(h="XXxxxX", q="yYyyYY")
 
     def test6(self):
-        self.menu.update_option("jouer", "execute")
+        self.menu.update_option("joUer", "Execute")
 
     def test7(self):
-        self.menu.update_option_by_index(8, "play")
+        self.menu.update_option_by_index(8, "pLay")
 
     def test8(self):
-        self.menu.update_options_by_key(q="fermer")
+        self.menu.update_options_by_key(q="FerMer")
 
     def test9(self):
-        self.menu.update_options_by_key(X="voila", f="bref")
+        self.menu.update_options_by_key(X="vOila", f="BREF")
 
     def test10(self):
-        self.menu.delete_option("voila")
+        self.menu.delete_option("voilA")
 
     def test11(self):
         self.menu.delete_options_by_key('b')
