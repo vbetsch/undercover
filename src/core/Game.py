@@ -1,6 +1,6 @@
-from src.core.Inspector import Inspector
 from src.core.Interactor import Interactor
 from src.core.Service import Service
+from src.core.Utils import Utils
 
 
 class Game:
@@ -22,7 +22,7 @@ class Game:
     def __exit__(self, exc_type, exc_value, exc_traceback):
         if exc_value:
             self.close()
-            Inspector().exception(exc_value)
+            Utils().exception(exc_value)
         self.save_state()
         self.close()
         return self
@@ -35,7 +35,7 @@ class Game:
             Service().words = game["words"]
             Interactor().call_system(f"{Interactor().trad('game_config', '_game_found')}{Interactor().progress}")
         else:
-            Interactor().call_warning(f"{Interactor().trad('game_config', '_game_not_found')}")
+            Interactor().warning(f"{Interactor().trad('game_config', '_game_not_found')}")
             self.config()
 
     def save_state(self):

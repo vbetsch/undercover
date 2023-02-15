@@ -6,6 +6,10 @@ class Utils(metaclass=Singleton):
         pass
 
     @staticmethod
+    def exception(text):
+        raise Exception(f"ERROR: {text}")
+
+    @staticmethod
     def get_index_from_list(array, value):
         return array.index(value)
 

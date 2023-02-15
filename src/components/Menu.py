@@ -16,14 +16,14 @@ class Menu:
         match self.mode:
             case "first_letters":
                 if Inspector().same_first_letter(self.entries):
-                    Inspector().exception("Some options start with same letter")
+                    Utils().exception("Some options start with same letter")
                 for entry in self.entries:
                     self.options[entry[0]] = entry
             case "numbers":
                 for index in range(0, len(self.entries)):
                     self.options[index + 1] = self.entries[index]
             case _:
-                Inspector().exception(Interactor().trad("menu", "_menu_mode_not_found"))
+                Utils().exception(Interactor().trad("menu", "_menu_mode_not_found"))
 
     def show(self):
         result = f"--------------- {self.title.upper()} ---------------"
@@ -44,13 +44,13 @@ class Menu:
 
     def update_option(self, opt, entry):
         if not self.exist_option(opt):
-            Inspector().exception("Option not found")
+            Utils().exception("Option not found")
         self.entries[Utils().get_index_from_list(self.entries, opt)] = entry
         self.compute_options()
 
     def update_option_by_index(self, index, entry):
         if not self.exist_option_by_index(index):
-            Inspector().exception("Index not found")
+            Utils().exception("Index not found")
         self.entries[index - 1] = entry
         self.compute_options()
 
@@ -111,4 +111,4 @@ class Menu:
 
     def one_option_already_exist(self, options):
         if not self.exist_one_option(list(options)):
-            Inspector().exception("One option already exist")
+            Utils().exception("One option already exist")
