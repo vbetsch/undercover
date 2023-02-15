@@ -14,7 +14,7 @@ def call_method(cls, method_name):
 class TestAuto:
     def ta_1(self):
         test_menu = TestMenu()
-        for i in range(12):
+        for i in range(13):
             print(f"\t- Test #{i + 1}")
             call_method(test_menu, f"test{i + 1}")
             test_menu.menu.show()

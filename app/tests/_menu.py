@@ -15,7 +15,7 @@ class TestMenu:
         self.menu.add_options("JoUeR", "quItTer")
 
     def test4(self):
-        self.menu.insert_options(s="rElier à Un cliEnR")
+        self.menu.insert_options(s="rElier à Un cliEnT")
 
     def test5(self):
         self.menu.insert_options(h="XXxxxX", q="yYyyYY")
@@ -40,3 +40,6 @@ class TestMenu:
 
     def test12(self):
         self.menu.delete_option_by_index(5)
+
+    def test13(self):
+        self.menu.add_options("JoUeR", "quItTer")
