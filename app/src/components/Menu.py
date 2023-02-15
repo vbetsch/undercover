@@ -27,11 +27,14 @@ class Menu:
             case _:
                 Utils().exception(Interactor().trad("menu", "_menu_mode_not_found"))
 
-    def show(self):
+    def text(self):
         result = f"--------------- {self.title.upper()} ---------------"
         for opt in self.options:
             result += f"\n({opt}) {self.options[opt].capitalize()}"
-        print(result)
+        return result
+
+    def show(self):
+        print(self.text)
 
     def add_options(self, *entries):
         for entry in entries:

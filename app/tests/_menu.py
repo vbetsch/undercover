@@ -43,3 +43,16 @@ class TestMenu:
 
     def test13(self):
         self.menu.add_options("JoUeR", "quItTer")
+
+    def test14(self):
+        self.menu = Menu("first_letters", "main", "resume", "create", "load", "delete", "quit")
+
+    def test15(self):
+        is_running = True
+        while is_running:
+            choice = input(f"{self.menu.text()}\n")
+            match choice:
+                case 'q':
+                    is_running = False
+                case _:
+                    print("Input not found")
