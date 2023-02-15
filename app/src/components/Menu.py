@@ -117,7 +117,3 @@ class Menu:
                 if not self.exist_option(alt):
                     return False
         return True
-
-    def one_option_already_exist(self, options):
-        if self.exist_one_option(list(options)):
-            Utils().exception("One option already exist")
