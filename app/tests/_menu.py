@@ -52,6 +52,14 @@ class TestMenu:
         while is_running:
             choice = input(f"{self.menu.text()}\n")
             match choice:
+                case 'r':
+                    print('Resume')
+                case 'c':
+                    print('Create')
+                case 'l':
+                    print('Load')
+                case 'd':
+                    print('Delete')
                 case 'q':
                     is_running = False
                 case _:
