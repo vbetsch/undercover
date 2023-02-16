@@ -34,7 +34,7 @@ class Menu:
         return result
 
     def show(self):
-        print(self.text)
+        print(self.text())
 
     def add_options(self, *entries):
         for entry in entries:
@@ -62,8 +62,8 @@ class Menu:
         self.entries[index - 1] = entry.lower()
         self.compute_options()
 
-    def update_options_by_key(self, **kwargs):
-        for key, value in kwargs.items():
+    def update_options_by_key(self, **keys):
+        for key, value in keys.items():
             key = key.lower()
             if not self.exist_key(key):
                 Utils().exception(f"Key {key} not found")
@@ -83,8 +83,8 @@ class Menu:
         self.entries.pop(Utils().get_index_from_list(self.entries, self.entries[index - 1]))
         self.compute_options()
 
-    def delete_options_by_key(self, *args):
-        for arg in args:
+    def delete_options_by_key(self, *keys):
+        for arg in keys:
             arg = arg.lower()
             if not self.exist_key(arg):
                 Utils().exception(f"Key {arg} not found")
