@@ -2,7 +2,6 @@ from _menu import TestMenu
 
 
 def call_method(cls, method_name):
-    method = None
     try:
         method = getattr(cls, method_name)
     except AttributeError:
@@ -14,8 +13,8 @@ def call_method(cls, method_name):
 class TestAuto:
     def ta_1(self):
         test_menu = TestMenu()
-        # (0->13) CRUD, (13->15) Main menu
-        for i in range(13, 15):
+        # (0->14) CRUD, (14->16) Main menu
+        for i in range(0, 14):
             print(f"\t- Test #{i + 1}")
             call_method(test_menu, f"test{i + 1}")
             test_menu.menu.show()

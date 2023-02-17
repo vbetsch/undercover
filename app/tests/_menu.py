@@ -43,11 +43,14 @@ class TestMenu:
 
     def test13(self):
         self.menu.add_options("JoUeR", "quItTer")
-
+        
     def test14(self):
-        self.menu = Menu("first_letters", "main", "resume", "create", "load", "delete", "quit")
+        self.menu.order(q=1, e=3)
 
     def test15(self):
+        self.menu = Menu("first_letters", "main", "resume", "create", "load", "delete", "quit")
+
+    def test16(self):
         is_running = True
         while is_running:
             choice = input(f"{self.menu.text()}\n")
