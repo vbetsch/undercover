@@ -1,4 +1,13 @@
 {
     "lang": "fr",
-    "last_game": 8781057450867
+    "lang_dir": "lang",
+    "last_game": 8736644425632,
+    "constants": {
+        "sources": {
+            "default": "data/default.json",
+            "rules": "data/rules.json",
+            "words": "data/words.json",
+            "games": "data/games.json"
+        }
+    }
 }
