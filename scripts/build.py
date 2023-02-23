@@ -11,7 +11,7 @@ LANG_PATH = 'lang/%s.json'
 CONF_PATH = 'config.json'
 MAIN_PATH = 'main.py'
 
-BUILD_DIR = '../build'
+BUILD_DIR = '../scripts/build'
 MAKE_PATH = 'make.py'
 
 default = {
