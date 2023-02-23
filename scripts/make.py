@@ -9,7 +9,7 @@ def __dump(path, data):
 
 def main():
     PREFIX = "OK"
-    DATA_PATH = '../app/data'
+    DATA_PATH = 'app/data'
     default = {
         "PLAYERS": {
             "WHITE_PLAYERS"     : [],
