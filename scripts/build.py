@@ -88,6 +88,15 @@ def __dump(path, data):
         json.dump(data, file, ensure_ascii=False, indent=4)
 
 
+def affect_values(sources_dest, **args):
+    for source in sources_dest:
+        for prop in sources_dest[source]:
+            if '%s' in sources_dest[source][prop]:
+                for arg, value in args.items():
+                    if source == arg:
+                        sources_dest[source][prop] %= value
+
+
 def copy_build(build, sources_dest):
     delete_build_if_exist(build)
     if not os.path.exists(build):
@@ -111,18 +120,18 @@ def copy_build(build, sources_dest):
             raise Exception(f"ERROR: Type {_type} not recognized for {source_dest}")
 
 
-def modify_conf(build, config):
-    config_path = os.path.join(build, config)
-    data = __load(config_path)
-    data["lang_dir"] = "."
-    __dump(config_path, data)
-
-
 def generate_data(path):
     if not os.path.exists(path):
         os.mkdir(path)
     for name, data in name_data_dict.items():
         __dump(os.path.join(path, f"{name}.json"), data)
+
+
+def modify_conf(build, config):
+    config_path = os.path.join(build, config)
+    data = __load(config_path)
+    data["lang_dir"] = "."
+    __dump(config_path, data)
 
 
 def make_tar(filename, source, arc_name):
@@ -142,11 +151,8 @@ def main():
     opts = parser.parse_args()
     lang = opts.lang
 
-    for source in SOURCES_DEST:
-        for prop in SOURCES_DEST[source]:
-            if '%s' in SOURCES_DEST[source][prop]:
-                if source == 'lang':
-                    SOURCES_DEST[source][prop] %= lang
+    print("Affect values...")
+    affect_values(SOURCES_DEST, lang=lang)
 
     print("Copying sources...")
     copy_build(BUILD_DIR, SOURCES_DEST)
