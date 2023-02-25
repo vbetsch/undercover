@@ -5,6 +5,7 @@ import os
 import shutil
 import json
 
+APP_DIR = 'app'
 BUILD_DIR = '../build'
 MAIN_PATH = 'main.py'
 MAKE_PATH = 'make.py'
@@ -78,6 +79,16 @@ name_data_dict = {
 NOW = datetime.datetime.now()
 
 
+def __read(path):
+    with open(path, 'r') as file:
+        return file.readlines()
+
+
+def __write(path, data):
+    with open(path, 'w') as file:
+        file.writelines(data)
+
+
 def __load(path):
     with open(path, 'r', encoding='utf-8') as file:
         return json.load(file)
@@ -86,6 +97,15 @@ def __load(path):
 def __dump(path, data):
     with open(path, 'w', encoding='utf-8') as file:
         json.dump(data, file, ensure_ascii=False, indent=4)
+
+
+def __list(filepath, filetype):
+    paths = []
+    for root, dirs, files in os.walk(filepath):
+        for file in files:
+            if file.lower().endswith(filetype.lower()):
+                paths.append(os.path.join(root, file))
+    return paths
 
 
 def affect_values(sources_dest, **args):
@@ -120,6 +140,18 @@ def copy_build(build, sources_dest):
             raise Exception(f"ERROR: Type {_type} not recognized for {source_dest}")
 
 
+def modify_path(build, sources_dest):
+    python_files = __list(build, '.py')
+    for file in python_files:
+        lines = __read(file)
+        for i in range(len(lines)):
+            if lines[i].startswith('from') and APP_DIR in lines[i]:
+                lines[i] = lines[i].replace(f"{APP_DIR}.", "")
+            if 'config.json' in lines[i]:
+                lines[i] = lines[i].replace(sources_dest['conf']['source'], sources_dest['conf']['dest'])
+        __write(file, lines)
+
+
 def generate_data(path):
     if not os.path.exists(path):
         os.mkdir(path)
@@ -130,7 +162,7 @@ def generate_data(path):
 def modify_conf(build, config):
     config_path = os.path.join(build, config)
     data = __load(config_path)
-    data["lang_dir"] = "."
+    data["lang_dir"] = "config"
     __dump(config_path, data)
 
 
@@ -156,6 +188,9 @@ def main():
 
     print("Copying sources...")
     copy_build(BUILD_DIR, SOURCES_DEST)
+
+    print("Modify imports...")
+    modify_path(BUILD_DIR, SOURCES_DEST)
 
     print("Generating data files...")
     generate_data(os.path.join(BUILD_DIR, SOURCES_DEST['data']['dest']))
