@@ -5,14 +5,37 @@ import os
 import shutil
 import json
 
-SRC_PATH = 'src'
-DATA_PATH = 'data'
-LANG_PATH = 'lang/%s.json'
-CONF_PATH = 'config.json'
+BUILD_DIR = '../build'
 MAIN_PATH = 'main.py'
-
-BUILD_DIR = '../scripts/build'
 MAKE_PATH = 'make.py'
+
+SOURCES_DEST = {
+    'src': {
+        'type': 'dir',
+        'source': 'src',
+        'dest': 'src'
+    },
+    'data': {
+        'type': 'dir',
+        'source': 'data',
+        'dest': 'data'
+    },
+    'lang': {
+        'type': 'file',
+        'source': 'lang/%s.json',
+        'dest': 'config/%s.json'
+    },
+    'conf': {
+        'type': 'file',
+        'source': 'config.json',
+        'dest': 'config/config.json'
+    },
+    'main': {
+        'type': 'file',
+        'source': 'main.py',
+        'dest': 'main.py'
+    }
+}
 
 default = {
     "PLAYERS": {
@@ -65,24 +88,34 @@ def __dump(path, data):
         json.dump(data, file, ensure_ascii=False, indent=4)
 
 
-def copy_build(build, sources):
+def copy_build(build, sources_dest):
     delete_build_if_exist(build)
     if not os.path.exists(build):
         os.mkdir(build)
-    for source in sources:
-        dest = os.path.join(build, source)
-        if os.path.isdir(source):
+    for source_dest in sources_dest:
+        element = sources_dest[source_dest]
+        _type = element['type']
+        source = element['source']
+        dest = os.path.join(build, element['dest'])
+        dir_list = dest.split('/')
+        current_dir = build
+        for i in range(0, len(dir_list) - 1):
+            current_dir = os.path.join(current_dir, dir_list[i])
+            if not os.path.exists(current_dir):
+                os.mkdir(current_dir)
+        if _type == 'dir':
             shutil.copytree(source, dest)
-        elif os.path.isfile(source):
-            shutil.copyfile(source, os.path.join(build, os.path.basename(source)))
+        elif _type == 'file':
+            shutil.copyfile(source, dest)
         else:
-            raise Exception("ERROR: File type not recognized")
+            raise Exception(f"ERROR: Type {_type} not recognized for {source_dest}")
 
 
 def modify_conf(build, config):
-    data = __load(config)
+    config_path = os.path.join(build, config)
+    data = __load(config_path)
     data["lang_dir"] = "."
-    __dump(os.path.join(build, config), data)
+    __dump(config_path, data)
 
 
 def generate_data(path):
@@ -109,16 +142,20 @@ def main():
     opts = parser.parse_args()
     lang = opts.lang
 
-    sources = [SRC_PATH, CONF_PATH, MAIN_PATH, LANG_PATH % lang]
+    for source in SOURCES_DEST:
+        for prop in SOURCES_DEST[source]:
+            if '%s' in SOURCES_DEST[source][prop]:
+                if source == 'lang':
+                    SOURCES_DEST[source][prop] %= lang
 
     print("Copying sources...")
-    copy_build(BUILD_DIR, sources)
+    copy_build(BUILD_DIR, SOURCES_DEST)
 
     print("Generating data files...")
-    generate_data(os.path.join(BUILD_DIR, DATA_PATH))
+    generate_data(os.path.join(BUILD_DIR, SOURCES_DEST['data']['dest']))
 
     print("Modify configuration...")
-    modify_conf(BUILD_DIR, CONF_PATH)
+    modify_conf(BUILD_DIR, SOURCES_DEST['conf']['dest'])
 
     print("Compiling archive...")
     tar_name = f"undercover-{lang}-{NOW.strftime('%Y_%b_%d')}"
