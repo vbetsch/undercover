@@ -1,82 +1,9 @@
-import datetime
+from constants import NAME_DATA_DICT, SOURCES_DEST, NOW, BUILD_DIR, APP_DIR, DIR, FILE
 import argparse
 import tarfile
 import os
 import shutil
 import json
-
-APP_DIR = 'app'
-BUILD_DIR = '../build'
-MAIN_PATH = 'main.py'
-MAKE_PATH = 'make.py'
-
-SOURCES_DEST = {
-    'src': {
-        'type': 'dir',
-        'source': 'src',
-        'dest': 'src'
-    },
-    'data': {
-        'type': 'dir',
-        'source': 'data',
-        'dest': 'data'
-    },
-    'lang': {
-        'type': 'file',
-        'source': 'lang/%s.json',
-        'dest': 'config/%s.json'
-    },
-    'conf': {
-        'type': 'file',
-        'source': 'config.json',
-        'dest': 'config/config.json'
-    },
-    'main': {
-        'type': 'file',
-        'source': 'main.py',
-        'dest': 'main.py'
-    }
-}
-
-default = {
-    "PLAYERS": {
-        "WHITE_PLAYERS": [],
-        "UNDERCOVER_PLAYERS": [],
-        "CIVILIAN_PLAYERS": [],
-        "ROLE_PLAYERS": {}
-    },
-    "ROLES": {
-        "white": 0,
-        "undercover": 0,
-        "civilian": 0
-    }
-}
-words = [
-    [
-        "car",
-        "truck"
-    ],
-    [
-        "violin",
-        "guitar"
-    ],
-    [
-        "facebook",
-        "whatsapp"
-    ],
-    [
-        "youtube",
-        "tiktok"
-    ]
-]
-games = []
-name_data_dict = {
-    "default": default,
-    "words": words,
-    "games": games
-}
-
-NOW = datetime.datetime.now()
 
 
 def __read(path):
@@ -132,9 +59,9 @@ def copy_build(build, sources_dest):
             current_dir = os.path.join(current_dir, dir_list[i])
             if not os.path.exists(current_dir):
                 os.mkdir(current_dir)
-        if _type == 'dir':
+        if _type == DIR:
             shutil.copytree(source, dest)
-        elif _type == 'file':
+        elif _type == FILE:
             shutil.copyfile(source, dest)
         else:
             raise Exception(f"ERROR: Type {_type} not recognized for {source_dest}")
@@ -155,7 +82,7 @@ def modify_path(build, sources_dest):
 def generate_data(path):
     if not os.path.exists(path):
         os.mkdir(path)
-    for name, data in name_data_dict.items():
+    for name, data in NAME_DATA_DICT.items():
         __dump(os.path.join(path, f"{name}.json"), data)
 
 
