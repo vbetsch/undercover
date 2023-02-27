@@ -86,7 +86,7 @@ $ pip freeze > requirements.txt
 
 - Build your version
 ```powershell
-$ python scripts/build.py -l LANG
+$ python scripts/build.py -l [lang]
 ```
 
 ### Linux & MacOS
