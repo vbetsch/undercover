@@ -1,5 +1,5 @@
-from constants import NAME_DATA_DICT, SOURCES_DEST, NOW, BUILD_DIR, APP_DIR, DIR, FILE, LANGS
-from core import __list, __read, __write, __load, __dump
+from _constants import NAME_DATA_DICT, SOURCES_DEST, NOW, BUILD_DIR, APP_DIR, DIR, FILE, LANGS
+from _core import __list, __read, __write, __load, __dump
 import argparse
 import tarfile
 import os

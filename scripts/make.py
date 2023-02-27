@@ -1,5 +1,5 @@
-from constants import APP_DIR, SOURCES_DEST, PREFIX, NAME_DATA_DICT
-from core import __dump
+from _constants import APP_DIR, SOURCES_DEST, PREFIX, NAME_DATA_DICT
+from _core import __dump
 import os
 
 data_path = os.path.join(APP_DIR, SOURCES_DEST['data']['source'])
