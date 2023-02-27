@@ -76,7 +76,7 @@ def delete_build_if_exist(build):
 
 
 def main():
-    parser = argparse.ArgumentParser('%prog ', description='This tool install a pack in shinken')
+    parser = argparse.ArgumentParser('Undercover builder', description='Build Undercover tar archive deliverable')
     parser.add_argument('-l', '--lang', dest='lang', help='Language (required)', required=True)
 
     opts = parser.parse_args()
