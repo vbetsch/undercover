@@ -1,4 +1,4 @@
-from constants import NAME_DATA_DICT, SOURCES_DEST, NOW, BUILD_DIR, APP_DIR, DIR, FILE
+from constants import NAME_DATA_DICT, SOURCES_DEST, NOW, BUILD_DIR, APP_DIR, DIR, FILE, LANGS
 from core import __list, __read, __write, __load, __dump
 import argparse
 import tarfile
@@ -15,14 +15,14 @@ def affect_values(sources_dest, **args):
                         sources_dest[source][prop] %= value
 
 
-def copy_build(build, sources_dest):
+def copy_build(app, build, sources_dest):
     delete_build_if_exist(build)
     if not os.path.exists(build):
         os.mkdir(build)
     for source_dest in sources_dest:
         element = sources_dest[source_dest]
         _type = element['type']
-        source = element['source']
+        source = os.path.join(app, element['source'])
         dest = os.path.join(build, element['dest'])
         dir_list = dest.split('/')
         current_dir = build
@@ -57,9 +57,10 @@ def generate_data(path):
         __dump(os.path.join(path, f"{name}.json"), data)
 
 
-def modify_conf(build, config):
+def modify_conf(build, config, lang):
     config_path = os.path.join(build, config)
     data = __load(config_path)
+    data["lang"] = lang
     data["lang_dir"] = "config"
     __dump(config_path, data)
 
@@ -81,11 +82,14 @@ def main():
     opts = parser.parse_args()
     lang = opts.lang
 
+    if lang not in LANGS:
+        raise Exception(f"ERROR: Language {lang} not available")
+
     print("Affect values...")
     affect_values(SOURCES_DEST, lang=lang)
 
     print("Copying sources...")
-    copy_build(BUILD_DIR, SOURCES_DEST)
+    copy_build(APP_DIR, BUILD_DIR, SOURCES_DEST)
 
     print("Modify imports...")
     modify_path(BUILD_DIR, SOURCES_DEST)
@@ -94,11 +98,11 @@ def main():
     generate_data(os.path.join(BUILD_DIR, SOURCES_DEST['data']['dest']))
 
     print("Modify configuration...")
-    modify_conf(BUILD_DIR, SOURCES_DEST['conf']['dest'])
+    modify_conf(BUILD_DIR, SOURCES_DEST['conf']['dest'], lang)
 
     print("Compiling archive...")
     tar_name = f"undercover-{lang}-{NOW.strftime('%Y_%b_%d')}"
-    make_tar(f"../{tar_name}.tar.gz", BUILD_DIR, tar_name)
+    make_tar(f"{tar_name}.tar.gz", BUILD_DIR, tar_name)
 
     print("Deleting build folder...")
     delete_build_if_exist(BUILD_DIR)

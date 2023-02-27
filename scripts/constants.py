@@ -1,11 +1,15 @@
 import datetime
 
-
 # DATETIME
 NOW = datetime.datetime.now()
 
 # CLI
 PREFIX = "OK"
+
+# LANGUAGES
+FR = 'fr'
+EN = 'en'
+LANGS = [FR, EN]
 
 # FILE TYPES
 DIR = 'dir'
