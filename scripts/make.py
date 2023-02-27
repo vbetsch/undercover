@@ -1,13 +1,8 @@
 from constants import APP_DIR, SOURCES_DEST, PREFIX, NAME_DATA_DICT
-import json
+from core import __dump
 import os
 
 data_path = os.path.join(APP_DIR, SOURCES_DEST['data']['source'])
-
-
-def __dump(path, data):
-    with open(path, 'w', encoding='utf-8') as file:
-        json.dump(data, file, ensure_ascii=False, indent=4)
 
 
 def main():
