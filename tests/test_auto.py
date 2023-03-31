@@ -13,8 +13,8 @@ def call_method(cls, method_name):
 class TestAuto:
     def ta_1(self):
         test_menu = TestMenu()
-        # (0->14) CRUD, (14->16) Main menu
-        for i in range(0, 14):
+        # 0->16 TOTAL : (0->14) CRUD, (14->16) Main menu
+        for i in range(14, 16):
             print(f"\t- Test #{i + 1}")
             call_method(test_menu, f"test{i + 1}")
             test_menu.menu.show()

@@ -6,7 +6,7 @@ class TestMenu:
         self.menu = None
 
     def test1(self):
-        self.menu = Menu("first_letters", "tesTs", "Ajouter un client", "ModiFier un clieNt", "supprimer un client")
+        self.menu = Menu("first_letters", "meNu", "Ajouter un client", "ModiFier un clieNt", "supprimer un client")
 
     def test2(self):
         self.menu.add_options("Help")
@@ -66,4 +66,4 @@ class TestMenu:
                 case 'q':
                     is_running = False
                 case _:
-                    print("Input not found")
+                    print("Option not found")
