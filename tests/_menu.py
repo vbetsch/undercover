@@ -18,16 +18,16 @@ class TestMenu:
         self.menu.add_options("JoUeR", "quItTer")
 
     def test4(self):
-        self.menu.insert_options(s="rElier à Un cliEnT")
+        self.menu.insert_options_by_key(s="rElier à Un cliEnT")
 
     def test5(self):
-        self.menu.insert_options(h="XXxxxX", q="yYyyYY")
+        self.menu.insert_options_by_key(h="XXxxxX", q="yYyyYY")
 
     def test6(self):
         self.menu.update_option("joUer", "Execute")
 
     def test7(self):
-        self.menu.update_option_by_index(8, "pLay")
+        self.menu.update_options_by_index((8, "pLay"))
 
     def test8(self):
         self.menu.update_options_by_key(q="FerMer")
@@ -48,7 +48,7 @@ class TestMenu:
         self.menu.add_options("JoUeR", "quItTer")
 
     def test14(self):
-        self.menu.order(q=1, e=3)
+        self.menu.order_by_key(j=1, q=6)
 
     # Numbers
 
@@ -60,48 +60,60 @@ class TestMenu:
         self.menu.add_options("Help")
 
     def test17(self):
-        self.menu.add_options("JoUeR", "BREF")
+        self.menu.add_options("JoUeR", "quItTer")
 
     def test18(self):
-        self.menu.add_options("rElier à Un cliEnT", "vOila", "yYyyYY")
+        self.menu.insert_options_by_index((3, "rElier à Un cliEnT"))
 
     def test19(self):
-        self.menu.update_option("joUer", "Execute")
+        self.menu.insert_options_by_index((5, "XXxxxX"), (7, "yYyyYY"))
 
     def test20(self):
-        self.menu.update_option_by_index(8, "pLay")
+        self.menu.update_option("joUer", "Execute")
 
     def test21(self):
-        self.menu.delete_option("plAy")
+        self.menu.update_options_by_index((8, "pLay"))
 
     def test22(self):
-        self.menu.delete_option('brEf')
+        self.menu.update_options_by_index((9, "FerMer"))
 
     def test23(self):
-        self.menu.delete_option_by_index(5)
+        self.menu.update_options_by_index((5, "vOila"), (9, "BREF"))
 
     def test24(self):
+        self.menu.delete_option("voilA")
+
+    def test25(self):
+        self.menu.delete_option_by_index(8)
+
+    def test26(self):
+        self.menu.delete_option_by_index(5)
+
+    def test27(self):
         self.menu.add_options("JoUeR", "quItTer")
+
+    # def test28(self):
+    #     self.menu.order_by_index((7, 1), (8, 6))
 
     # Main Menu
 
-    def test25(self):
-        self.menu = Menu("first_letters", "main", "resume", "create", "load", "delete", "quit")
+    # def test25(self):
+    #     self.menu = Menu("first_letters", "main", "resume", "create", "load", "delete", "quit")
 
-    def test26(self):
-        is_running = True
-        while is_running:
-            choice = input(f"{self.menu.text()}\n")
-            match choice:
-                case 'r':
-                    print('Resume')
-                case 'c':
-                    print('Create')
-                case 'l':
-                    print('Load')
-                case 'd':
-                    print('Delete')
-                case 'q':
-                    is_running = False
-                case _:
-                    print("Option not found")
+    # def test26(self):
+    #     is_running = True
+    #     while is_running:
+    #         choice = input(f"{self.menu.text()}\n")
+    #         match choice:
+    #             case 'r':
+    #                 print('Resume')
+    #             case 'c':
+    #                 print('Create')
+    #             case 'l':
+    #                 print('Load')
+    #             case 'd':
+    #                 print('Delete')
+    #             case 'q':
+    #                 is_running = False
+    #             case _:
+    #                 print("Option not found")
