@@ -50,57 +50,69 @@ class TestMenu:
     def test14(self):
         self.menu.order_by_key(j=1, q=6)
 
+    def test15(self):
+        self.menu.hide(6, 7, 8)
+
+    def test16(self):
+        self.menu.show(5, 6)
+
     # Numbers
 
-    def test15(self):
+    def test17(self):
         self.menu = Menu(MenuMode.NUMBERS.value, "meNu", "Ajouter un client", "ModiFier un clieNt",
                          "supprimer un client")
 
-    def test16(self):
+    def test18(self):
         self.menu.add_options("Help")
 
-    def test17(self):
-        self.menu.add_options("JoUeR", "quItTer")
-
-    def test18(self):
-        self.menu.insert_options_by_index((3, "rElier à Un cliEnT"))
-
     def test19(self):
-        self.menu.insert_options_by_index((5, "XXxxxX"), (7, "yYyyYY"))
+        self.menu.add_options("JoUeR", "quItTer")
 
     def test20(self):
-        self.menu.update_option("joUer", "Execute")
+        self.menu.insert_options_by_index((3, "rElier à Un cliEnT"))
 
     def test21(self):
-        self.menu.update_options_by_index((8, "pLay"))
+        self.menu.insert_options_by_index((5, "XXxxxX"), (7, "yYyyYY"))
 
     def test22(self):
-        self.menu.update_options_by_index((9, "FerMer"))
+        self.menu.update_option("joUer", "Execute")
 
     def test23(self):
-        self.menu.update_options_by_index((5, "vOila"), (9, "BREF"))
+        self.menu.update_options_by_index((8, "pLay"))
 
     def test24(self):
-        self.menu.delete_option("voilA")
+        self.menu.update_options_by_index((9, "FerMer"))
 
     def test25(self):
-        self.menu.delete_option_by_index(8)
+        self.menu.update_options_by_index((5, "vOila"), (9, "BREF"))
 
     def test26(self):
-        self.menu.delete_option_by_index(5)
+        self.menu.delete_option("voilA")
 
     def test27(self):
-        self.menu.add_options("JoUeR", "quItTer")
+        self.menu.delete_option_by_index(8)
 
     def test28(self):
+        self.menu.delete_option_by_index(5)
+
+    def test29(self):
+        self.menu.add_options("JoUeR", "quItTer")
+
+    def test30(self):
         self.menu.order_by_index((7, 1), (8, 6))
+
+    def test31(self):
+        self.menu.hide(6, 7, 8)
+
+    def test32(self):
+        self.menu.show(5, 6)
 
     # Main Menu
 
-    def test29(self):
+    def test33(self):
         self.menu = Menu("first_letters", "main", "resume", "create", "load", "delete", "quit")
 
-    def test30(self):
+    def test34(self):
         is_running = True
         while is_running:
             choice = input(f"{self.menu.text()}\n")

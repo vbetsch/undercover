@@ -51,7 +51,7 @@ class Menu:
                 result += f"\n({opt['key']}) {opt['display'].capitalize()}"
         return result
 
-    def show(self):
+    def run(self):
         print(self.text())
 
     def bad_mode(self, mode):
@@ -102,6 +102,11 @@ class Menu:
             if opt['key'] == key:
                 return opt
 
+    def get_option_by_index(self, index):
+        if not self.exist_option_by_index(index):
+            Utils.exception(f"Index {index} not found")
+        return self.options[index]
+
     def get_option_text_by_key(self, key):
         return self.get_option_by_key(key)['display']
 
@@ -110,6 +115,20 @@ class Menu:
 
     def get_index_from_opt(self, opt):
         return Utils().get_index_from_list(self.entries, opt)
+
+    def show(self, *indexes):
+        for index in indexes:
+            _index = index - 1
+            if not self.exist_option_by_index(_index):
+                Utils().exception(f"Index <{index}> not found")
+            self.get_option_by_index(_index)['visible'] = True
+
+    def hide(self, *indexes):
+        for index in indexes:
+            _index = index - 1
+            if not self.exist_option_by_index(_index):
+                Utils().exception(f"Index <{index}> not found")
+            self.get_option_by_index(_index)['visible'] = False
 
     def add_options(self, *entries):
         for entry in entries:
