@@ -92,28 +92,28 @@ class TestMenu:
     def test27(self):
         self.menu.add_options("JoUeR", "quItTer")
 
-    # def test28(self):
-    #     self.menu.order_by_index((7, 1), (8, 6))
+    def test28(self):
+        self.menu.order_by_index((7, 1), (8, 6))
 
     # Main Menu
 
-    # def test25(self):
-    #     self.menu = Menu("first_letters", "main", "resume", "create", "load", "delete", "quit")
+    def test29(self):
+        self.menu = Menu("first_letters", "main", "resume", "create", "load", "delete", "quit")
 
-    # def test26(self):
-    #     is_running = True
-    #     while is_running:
-    #         choice = input(f"{self.menu.text()}\n")
-    #         match choice:
-    #             case 'r':
-    #                 print('Resume')
-    #             case 'c':
-    #                 print('Create')
-    #             case 'l':
-    #                 print('Load')
-    #             case 'd':
-    #                 print('Delete')
-    #             case 'q':
-    #                 is_running = False
-    #             case _:
-    #                 print("Option not found")
+    def test30(self):
+        is_running = True
+        while is_running:
+            choice = input(f"{self.menu.text()}\n")
+            match choice:
+                case 'r':
+                    print('Resume')
+                case 'c':
+                    print('Create')
+                case 'l':
+                    print('Load')
+                case 'd':
+                    print('Delete')
+                case 'q':
+                    is_running = False
+                case _:
+                    print("Option not found")

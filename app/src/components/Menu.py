@@ -172,22 +172,16 @@ class Menu:
             self.entries.insert(index - 1, self.get_option_text_by_key(key).lower())
         self.compute_options()
 
-    # def order_by_index(self, *places):  # key -> index
-    #     old_entries = self.entries.copy()
-    #     for place in places:
-    #     # self.delete_option_by_index()
-    #         _index = place[0] - 1
-    #         if not self.exist_option_by_index_of(old_entries, _index):
-    #             Utils().exception(f"Index <{place[0]}> not found")
-    #         old_entries.pop(_index)
-    #     # self.insert_options_by_index()
-    #     for index, value in places:
-    #         _index = index - 1
-    #         if not self.exist_option_by_index_of(old_entries, _index):
-    #             Utils().exception(f"Index <{index}> not found")
-    #         old_entries.insert(_index, value)
-    #     self.entries = old_entries.copy()
-    #     self.compute_options()
+    def order_by_index(self, *places):  # key -> index
+        old_entries = self.entries.copy()
+        for index, value in places:
+            _index = index - 1
+            _value = value - 1
+            if not self.exist_option_by_index_of(old_entries, _index):
+                Utils().exception(f"Index <{_index}> not found")
+            self.entries.pop(_index)
+            self.entries.insert(_value, self.get_option_text_by_key(index).lower())
+        self.compute_options()
 
     def delete_option(self, opt_text):
         opt = opt_text.lower()
