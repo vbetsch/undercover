@@ -123,12 +123,24 @@ class Menu:
                 Utils().exception(f"Index <{index}> not found")
             self.get_option_by_index(_index)['visible'] = True
 
+    def show_by_keys(self, *keys):
+        for key in keys:
+            if not self.exist_option_by_index(self.get_index_from_key(key)):
+                Utils().exception(f"Key <{key}> not found")
+            self.get_option_by_key(key)['visible'] = True
+
     def hide(self, *indexes):
         for index in indexes:
             _index = index - 1
             if not self.exist_option_by_index(_index):
                 Utils().exception(f"Index <{index}> not found")
             self.get_option_by_index(_index)['visible'] = False
+
+    def hide_by_keys(self, *keys):
+        for key in keys:
+            if not self.exist_option_by_index(self.get_index_from_key(key)):
+                Utils().exception(f"Key <{key}> not found")
+            self.get_option_by_key(key)['visible'] = False
 
     def add_options(self, *entries):
         for entry in entries:

@@ -51,10 +51,10 @@ class TestMenu:
         self.menu.order_by_key(j=1, q=6)
 
     def test15(self):
-        self.menu.hide(6, 7, 8)
+        self.menu.hide_by_keys('q', 'y', 'p')
 
     def test16(self):
-        self.menu.show(5, 6)
+        self.menu.show_by_keys('s', 'q')
 
     # Numbers
 

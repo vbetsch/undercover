@@ -14,7 +14,7 @@ class TestAuto:
     def ta_1(self):
         test_menu = TestMenu()
         # 0->26 TOTAL : (0->16) First letters, (16->32) Numbers, (32->34) Main menu
-        for i in range(16, 32):
+        for i in range(0, 16):
             print(f"\t- Test #{i + 1}")
             call_method(test_menu, f"test{i + 1}")
             test_menu.menu.run()
