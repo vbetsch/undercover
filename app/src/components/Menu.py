@@ -31,6 +31,7 @@ class Menu:
 
     def compute_options(self):
         self.options = []
+        self.keys = []
         match self.mode:
             case MenuMode.FIRST_LETTERS.value:
                 if Inspector().same_first_letter(self.entries):
