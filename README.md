@@ -52,16 +52,6 @@ Download and install it from [python.org](https://www.python.org/downloads/macos
 $ brew install python
 ```
 
-### Debian / Ubuntu
-```bash
-$ sudo apt update && sudo apt upgrade && sudo apt install python3.10
-```
-
-### ArchLinux / Manjaro
-```bash
-$ sudo pacman -Sy python
-```
-
 ## Installation
 ### Windows
 - Create virtual environment from this directory
